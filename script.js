@@ -46,7 +46,7 @@ function bounce() {
 
     ballPosition = ballPosition % (GAME_AREA_HEIGHT - BALL_SIZE);
 
-    ballPosition.style.top = `${ballPosition}px`;
+    ball.style.top = `${ballPosition}px`;
 }
 
 function loop2() {
