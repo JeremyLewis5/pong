@@ -35,3 +35,22 @@ function loop() {
     window.requestAnimationFrame(loop);
 }
 window.requestAnimationFrame(loop);
+
+const ball = document.querySelector('.ball');
+
+let ballPosition = 0;
+let ballVelocity = 1;
+
+function bounce() {
+    ballPosition = ballPosition + ballVelocity;
+
+    ballPosition = ballPosition % (GAME_AREA_HEIGHT - BALL_SIZE);
+
+    ballPosition.style.top = `${ballPosition}px`;
+}
+
+function loop2() {
+    bounce();
+    window.requestAnimationFrame(loop2);
+}
+window.requestAnimationFrame(loop2);
