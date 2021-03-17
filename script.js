@@ -11,23 +11,28 @@ const BALL_SIZE = 20;
 
 // Get the computer paddle element
 const computerPaddle = document.querySelector('.computer-paddle');
-
+const ball = document.querySelector('.ball');
+let positionX = 100;
 // Initial computer paddle y-position and y-velocity
 let computerPaddleYPosition = 0;
 let computerPaddleYVelocity = 1;
 
 // Update the pong world
 function update() {
+    positionX++;
+    //console.log(positionX);
 
     // Update the computer paddle's position
     computerPaddleYPosition = computerPaddleYPosition + computerPaddleYVelocity;
 
     // If the computer paddle goes off the edge of the screen, bring it back
-    computerPaddleYPosition = computerPaddleYPosition % (GAME_AREA_HEIGHT - PADDLE_HEIGHT);
-
+    if (computerPaddleYPosition > GAME_AREA_HEIGHT) {
+        computerPaddleYPosition = 0;
+    }
+}
     // Apply the y-position 
     computerPaddle.style.top = `${computerPaddleYPosition}px`;
-}
+    ball.style.left = `${positionX}px`;
 
 // Call the update() function everytime the browser is ready to re-render
 function loop() {
@@ -36,21 +41,22 @@ function loop() {
 }
 window.requestAnimationFrame(loop);
 
-const ball = document.querySelector('.ball');
 
-let ballPosition = 0;
-let ballVelocity = 1;
 
-function bounce() {
-    ballPosition = ballPosition + ballVelocity;
+// let ballPosition = 0;
+// let ballVelocity = 1;
+// let positionX = 100;
 
-    ballPosition = ballPosition % (GAME_AREA_HEIGHT - BALL_SIZE);
+// function bounce() {
+//     ballPosition = ballPosition + ballVelocity;
 
-    ball.style.top = `${ballPosition}px`;
-}
+//     ballPosition = ballPosition % (GAME_AREA_HEIGHT - BALL_SIZE);
 
-function loop2() {
-    bounce();
-    window.requestAnimationFrame(loop2);
-}
-window.requestAnimationFrame(loop2);
+//     ball.style.top = `${ballPosition}px`;
+// }
+
+// function loop2() {
+//     bounce();
+//     window.requestAnimationFrame(loop2);
+// }
+// window.requestAnimationFrame(loop2);
